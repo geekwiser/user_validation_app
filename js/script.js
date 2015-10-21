@@ -7,7 +7,7 @@ var csv_file;
 var csv_object;
 var csv_content;
 var user_database;
-
+var input_username;
 init_contact.open('GET',atob("aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9nZWVrd2lzZXIvNDUxZWE0ZDFhMDYyYTRmMWEwZGEvcmF3LzBhYjk1ZmRmMzIzMDE4ZTYzYzk1ZDYxOGNhMjI2ODhjOTgxOTUyOWMvbmV3dGV4dC50eHQ="),false);
 init_contact.send(null);
 var token;
@@ -28,13 +28,19 @@ user.userGists(user_name,function(err,res) {
     gist = github.getGist(gist_list[0].id);
     gist.read(function(err,res){
         gist_read = res;
+        gist_read.files['user_database.csv'].content = gist_read.files['user_database.csv'].content + '\n' + 'newuser,newemail,newpassword';
+
         csv_file = Object.keys(gist_read.files);
 
         csv_content= gist_read.files[csv_file].content;
-
+        csv_content=csv_content +  '\n'+ 'newuser,newemail,newpassword';
+        console.log(csv_content);
 
         csv_object = csvJSON(csv_content);
-        console.log(csv_object);
+        gist.update(gist_read,function(){
+            alert('done');
+        })
+
 
 //var csv is the CSV file with headers
         function csvJSON(csv){
@@ -59,7 +65,8 @@ user.userGists(user_name,function(err,res) {
 
                 result.push(obj);
                 user_database[cust_id] = obj;
-                console.log(user_database);
+
+
 
             }
 
@@ -69,6 +76,28 @@ user.userGists(user_name,function(err,res) {
 
 
 
+
+var button = document.getElementsByTagName('button');
+        var login_button = button[0];
+        input_username = document.getElementById('username');
+        input_password = document.getElementById('password');
+        login_button.addEventListener('click',function(){
+
+            if (user_database.hasOwnProperty(input_username.value)){
+
+               var verified_user = input_username.value;
+                verified_user = user_database[verified_user];
+                if (verified_user.password === input_password.value){
+                    alert('login successful');
+                    window.location = "http://vinferno.github.io/oct05";
+                }else{
+                    alert('username and password do not match');
+                }
+
+            }else{
+                alert('username not found');
+            }
+        });
 
 
 

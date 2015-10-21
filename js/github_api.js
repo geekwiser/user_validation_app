@@ -783,7 +783,7 @@
             // Update a gist with the new stuff
             // --------
 
-            this.update = function(options, cb) {
+            this.update = function(options, cb) {// options is a gist object file
                 _request("PATCH", gistPath, options, function(err,res) {
                     cb(err,res);
                 });
