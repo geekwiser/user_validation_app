@@ -1,3 +1,9 @@
+/**
+*
+*
+*
+*
+**/
 var init_contact = new XMLHttpRequest();
 
 
@@ -76,9 +82,25 @@ user.userGists(user_name,function(err,res) {
         }
 
 
+var button = document.getElementsByTagName('button');
+        var login_button = button[0];
+        input_username = document.getElementById('username');
+        input_password = document.getElementById('password');
+        login_button.addEventListener('click', function(){
 
+                if(user_database.hasOwnProperty(input_username.value)){
+                  var verified_user = input_username.value
+                  verified_user = user_database[verified_user];
+                  if(verified_user.password === input_password.value){
+                        alert('login successful');
+                  }else{
+                    log('username and password do not match file');
+                  }
+                }else{
+                    confirm('username not found');
+                }
 
-
+        });
 
 
 
