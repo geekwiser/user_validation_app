@@ -76,10 +76,7 @@ user.userGists(user_name,function(err,res) {
                 alert('username not found');
             }
         });
-        var sign_up_button = document.getElementById('sign_up');
-        sign_up_button.addEventListener('click',function(){
-            window.location = 'sign_up.html';
-        })
+
     });
 });
 
