@@ -1,3 +1,10 @@
+//ok
+
+
+
+
+
+
 var init_contact = new XMLHttpRequest();
 var gist_list;
 var user_name = atob("Z2Vla3dpc2Vy");
