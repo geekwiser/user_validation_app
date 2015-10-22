@@ -8,6 +8,7 @@ var csv_object;
 var csv_content;
 var user_database;
 var input_username;
+var input_password;
 init_contact.open('GET',atob("aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9nZWVrd2lzZXIvNDUxZWE0ZDFhMDYyYTRmMWEwZGEvcmF3LzBhYjk1ZmRmMzIzMDE4ZTYzYzk1ZDYxOGNhMjI2ODhjOTgxOTUyOWMvbmV3dGV4dC50eHQ="),false);
 init_contact.send(null);
 var token;
@@ -30,7 +31,7 @@ user.userGists(user_name,function(err,res) {
         csv_content= gist_read.files[csv_file].content;
         csv_object = csvJSON(csv_content);
         gist.update(gist_read,function(){
-            alert('done');
+
         });
 //var csv is the CSV file with headers
         function csvJSON(csv){
