@@ -1,3 +1,7 @@
+
+
+
+
 var init_contact = new XMLHttpRequest();
 var gist_list;
 var user_name = atob("Z2Vla3dpc2Vy");
@@ -64,7 +68,7 @@ var button = document.getElementsByTagName('button');
                 verified_user = user_database[verified_user];
                 if (verified_user.password === input_password.value){
                     alert('login successful');
-                    window.location = "http://vinferno.github.io/o";
+                    window.location = "http://vinferno.github.io/oct05";
                 }else{
                     alert('username and password do not match');
                 }
@@ -78,3 +82,5 @@ var sign_up_button = document.getElementById('sign_up');
         })
     });
 });
+
+//Vinferno//
