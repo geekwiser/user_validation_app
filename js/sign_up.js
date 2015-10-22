@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-
-=======
 //ok
->>>>>>> 28cfaf517e742796d76808a85926797b1956d546
+
 
 
 
@@ -72,11 +69,8 @@ user.userGists(user_name,function(err,res) {
                 verified_user = user_database[verified_user];
                 if (verified_user.password === input_password.value){
                     alert('login successful');
-<<<<<<< HEAD
                     window.location = "http://vinferno.github.io/oct05";
-=======
-                    window.location = "http://vinferno.github.io/o";
->>>>>>> 28cfaf517e742796d76808a85926797b1956d546
+
                 }else{
                     alert('username and password do not match');
                 }
@@ -86,10 +80,5 @@ user.userGists(user_name,function(err,res) {
         });
 
     });
-<<<<<<< HEAD
-});
 
-//Vinferno//
-=======
 });
->>>>>>> 28cfaf517e742796d76808a85926797b1956d546
