@@ -21,6 +21,7 @@ form{
 button{
     text-align: center;
     flex:1;
+    font-size: 2rem;
 }
 
 input{
@@ -31,11 +32,19 @@ input{
 
 h3{
     display: block;
-    height: 20px;
+    height: 100%;
     padding:0;
     background-color: hsla(185,60%,70%,1);
+    margin:0;
 }
 
-#sign_up{
+.form_item{
+    margin:5px 0;
+    padding:10px 0;
+    font-size: 2rem;
+}
 
+.alert_hidden{
+    height:0.01;
+    display:none;
 }

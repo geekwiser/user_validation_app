@@ -1,18 +1,33 @@
 //ok
 
 
-
+var mandrill_client;
 var init_contact = new XMLHttpRequest();
 var gist_list;
 var user_name = atob("Z2Vla3dpc2Vy");
 var gist;
-var gist_read;
+var gist_read
+var user;
 var csv_file;
 var csv_object;
 var csv_content;
 var user_database;
 var input_username;
+var input_email;
 var input_password;
+var input_password_confirm;
+var input;
+var button;
+var alert_all;
+var alert_username;
+var alert_email;
+var alert_password;
+var alert_password_match;
+var alert_blank;
+var github;
+var result;
+
+
 init_contact.open('GET',atob("aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9nZWVrd2lzZXIvNDUxZWE0ZDFhMDYyYTRmMWEwZGEvcmF3LzBhYjk1ZmRmMzIzMDE4ZTYzYzk1ZDYxOGNhMjI2ODhjOTgxOTUyOWMvbmV3dGV4dC50eHQ="),false);
 init_contact.send(null);
 var token;
@@ -30,17 +45,15 @@ user.userGists(user_name,function(err,res) {
     gist = github.getGist(gist_list[0].id);
     gist.read(function(err,res){
         gist_read = res;
-        //gist_read.files['user_database.csv'].content = gist_read.files['user_database.csv'].content + '\n' + 'newuser,newemail,newpassword';
+        
         csv_file = Object.keys(gist_read.files);
         csv_content= gist_read.files[csv_file].content;
         csv_object = csvJSON(csv_content);
-        gist.update(gist_read,function(){
 
-        });
 //var csv is the CSV file with headers
         function csvJSON(csv){
             var lines=csv.split("\n");
-            var result = [];
+             result = [];
             user_database={};
             var headers=lines[0].split(",");
             for(var i=1;i<lines.length;i++){
@@ -58,24 +71,87 @@ user.userGists(user_name,function(err,res) {
             //return result; //JavaScript object
             return JSON.stringify(result); //JSON
         }
-        var button = document.getElementsByTagName('button');
-        var login_button = button[0];
-        input_username = document.getElementById('username');
-        input_password = document.getElementById('password');
-        login_button.addEventListener('click',function(){
-            if (user_database.hasOwnProperty(input_username.value)){
-                var verified_user = input_username.value;
-                verified_user = user_database[verified_user];
-                if (verified_user.password === input_password.value){
-                    alert('login successful');
-                    window.location = "http://vinferno.github.io/o";
-                }else{
-                    alert('username and password do not match');
-                }
-            }else{
-                alert('username not found');
-            }
-        });
+        
+
 
     });
 });
+
+        input = document.getElementsByTagName('input');
+        input_username = input[0];
+        input_email = input[1]; 
+        input_password = input[2];
+        input_password_confirm = input[3];
+        alert_all = document.getElementsByTagName('span');
+        alert_username =alert_all[0];
+        alert_email = alert_all[1];
+        alert_password = alert_all[2];
+        alert_password_match = alert_all[3];
+        alert_blank = alert_all[4];
+        
+var email_client = new mandrill.Mandrill(atob("U1p1REpzYjJSSnRhM0NzWUJaVEJVUQ=="));
+
+// create a variable for the API call parameters
+var params;
+
+function sendTheMail() {
+// Send the email!
+
+    email_client.messages.send(params, function(res) {
+        console.log(res);
+    }, function(err) {
+        console.log(err);
+    });
+}
+
+        
+        
+        button = document.getElementsByTagName('button')[0];
+        button.addEventListener('click',function(){
+          
+          
+            if(input_username.value === '' || input_email.value === ''|| input_password.value === ''){
+                alert_blank.classList.toggle('alert_hidden');
+                
+                
+                return;
+            }
+            
+            if (input_password.value != input_password_confirm.value){ 
+                    alert_password_match.classList.toggle('alert_hidden'); 
+                        return;
+                
+            }
+            if (user_database.hasOwnProperty(input_username.value)){
+                    alert_username.classList.toggle('alert_hidden');
+                        return;
+                
+            }
+        
+               for (var prop in result){
+                   console.log(result[prop]);
+                   if (result[prop].email=== input_email.value){
+                       alert_email.classList.toggle('alert_hidden');
+                       return;
+                   }
+               }
+           
+            params = {
+    "message": {
+        "from_email":"vinsonfernandez27@gmail.com",
+        "to":[{"email":input_email.value}],
+        "subject": "Thanks for signing up",
+        "html": "Congradulations " + input_username.value + " you have finished the sign up process. thank you and have a nice day!"
+    }
+};
+            
+            gist_read.files['user_database.csv'].content = gist_read.files['user_database.csv'].content + '\n' + input_username.value +','+ input_email.value +","+ input_password.value;                                            
+                gist.update(gist_read,function(){
+                //   console.log(input_username.value);
+               
+          
+            });
+            
+            console.log(params.message);
+          sendTheMail();
+        });

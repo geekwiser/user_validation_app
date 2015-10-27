@@ -1,26 +1,27 @@
 //ok
 
 
-
-
-
-
+var csv_object;
 var init_contact = new XMLHttpRequest();
 var gist_list;
 var user_name = atob("Z2Vla3dpc2Vy");
 var gist;
 var gist_read;
 var csv_file;
-var csv_object;
+var user;
 var csv_content;
 var user_database;
 var input_username;
 var input_password;
-init_contact.open('GET',atob("aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9nZWVrd2lzZXIvNDUxZWE0ZDFhMDYyYTRmMWEwZGEvcmF3LzBhYjk1ZmRmMzIzMDE4ZTYzYzk1ZDYxOGNhMjI2ODhjOTgxOTUyOWMvbmV3dGV4dC50eHQ="),false);
-init_contact.send(null);
 var token;
+var github;
+
+init_contact.open('GET', atob("aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9nZWVrd2lzZXIvNDUxZWE0ZDFhMDYyYTRmMWEwZGEvcmF3LzBhYjk1ZmRmMzIzMDE4ZTYzYzk1ZDYxOGNhMjI2ODhjOTgxOTUyOWMvbmV3dGV4dC50eHQ="),false);
+init_contact.send(null);
+
 token = init_contact.responseText;
 token = atob(token);
+
 github = new Github({
     token:token,
     auth: "basic"
@@ -82,6 +83,11 @@ var button = document.getElementsByTagName('button');
 var sign_up_button = document.getElementById('sign_up');
         sign_up_button.addEventListener('click',function(){
             window.location = 'sign_up.html';
-        })
+            
+         
+          
+          
+          
+        });
     });
 });
