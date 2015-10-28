@@ -28,6 +28,7 @@ form{
 button{
     text-align: center;
     flex:1;
+    font-size: 2rem;
 }
 
 input{
@@ -37,8 +38,9 @@ input{
     margin:10px 0 5px;
     padding:0;}
 
-div > div{
+h3{
     display: block;
+<<<<<<< HEAD
     height: 20px;
 
     background-color: hsla(185,60%,70%,1);
@@ -51,8 +53,21 @@ h3{
     padding:0;
     background-color: hsla(185,60%,70%,1);
 
+=======
+    height: 100%;
+    padding:0;
+    background-color: hsla(185,60%,70%,1);
+    margin:0;
+>>>>>>> origin/master
 }
 
-#sign_up{
+.form_item{
+    margin:5px 0;
+    padding:10px 0;
+    font-size: 2rem;
+}
 
+.alert_hidden{
+    height:0.01;
+    display:none;
 }

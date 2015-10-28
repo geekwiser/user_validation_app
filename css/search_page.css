@@ -1,10 +1,4 @@
 
-<<<<<<< HEAD
-*{
-    box-sizing: border-box;}
-
-=======
->>>>>>> origin/master
 
 body > div:nth-of-type(1){
     background-color: hsla(185,50%,35%,1);
@@ -14,68 +8,30 @@ body > div:nth-of-type(1){
 
 
 form{
-<<<<<<< HEAD
-    display:flex;
-=======
    display:flex;
->>>>>>> origin/master
     flex-direction: column;
     width:40%;
     justify-content: center;
     margin:20px auto;
     background-color: hsla(185,50%,45%,1);
-<<<<<<< HEAD
-    text-align: center;
-    flex:1;
-
-    padding:40px;
-
-
-=======
     padding: 40px;
     text-align: center;
->>>>>>> origin/master
 }
 
 button{
     text-align: center;
     flex:1;
-<<<<<<< HEAD
-=======
     font-size: 2rem;
->>>>>>> origin/master
 }
 
 input{
     text-align: center;
     height:100%;
     flex:1;
-<<<<<<< HEAD
-    margin:10px 0 5px;
-    padding:0;}
-
-div > div{
-    display: block;
-    height: 20px;
-
-    background-color: hsla(185,60%,70%,1);
-
-=======
->>>>>>> origin/master
 }
 
 h3{
     display: block;
-<<<<<<< HEAD
-    height: 20px;
-    padding:0;
-    background-color: hsla(185,60%,70%,1);
-
-}
-
-#sign_up{
-
-=======
     height: 100%;
     padding:0;
     background-color: hsla(185,60%,70%,1);
@@ -98,5 +54,4 @@ h3{
     color:  hsl(360, 60%, 50%);
     font-size: 1.8rem;
     text-shadow: 1px 1px 1px #000;
->>>>>>> origin/master
 }
