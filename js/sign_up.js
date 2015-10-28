@@ -1,5 +1,7 @@
 //ok
-
+function log (message){
+    console.log(message);
+}
 
 <<<<<<< HEAD
 
@@ -10,11 +12,15 @@ var mandrill_client;
 var init_contact = new XMLHttpRequest();
 var gist_list;
 var user_name = atob("Z2Vla3dpc2Vy");
-var gist;
+var user_profile;
 var gist_read;
 <<<<<<< HEAD
 =======
 var user;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+var user_gist_read;
 >>>>>>> origin/master
 var csv_file;
 var csv_object;
@@ -43,6 +49,8 @@ var alert_blank;
 var github;
 var result;
 var token;
+var user_gist;
+
 
 //initial contact to github to grab token 
 init_contact.open('GET',atob("aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9nZWVrd2lzZXIvNDUxZWE0ZDFhMDYyYTRmMWEwZGEvcmF3LzBhYjk1ZmRmMzIzMDE4ZTYzYzk1ZDYxOGNhMjI2ODhjOTgxOTUyOWMvbmV3dGV4dC50eHQ="),false);
@@ -127,19 +135,32 @@ user = github.getUser();
 user.userGists(user_name,function(err,res) {
     
     gist_list = res;
+    log(gist_list);
+    user_gist = github.getGist(gist_list[0].id);
+           
+           user_gist.read(function(err,res) {
+               
+               user_gist_read = res
+               
+           });
+           
+    user_profile = github.getGist(gist_list[3].id);
+    log(user_profile);
+    debugger;
     
-    gist = github.getGist(gist_list[0].id);
-    
-    gist.read(function(err,res){
+    user_profile.read(function(err,res){
         
         gist_read = res;
         
         csv_file = Object.keys(gist_read.files);
-        
+        log(csv_file);
+        debugger;   
             csv_content= gist_read.files[csv_file].content;
-            
+            log(csv_content);
+            debugger;   
                 csv_object = csvJSON(csv_content);
-
+                    log(csv_object);
+                    debugger;
 //var csv is the CSV file with headers and function csvJSON converts csv to json object
         function csvJSON(csv){
             
@@ -273,9 +294,9 @@ params = {
         
     }
 };
-
+              
             //----------currently updates database with new users so stays upto date 
-            gist_read.files['user_database.csv'].content = gist_read.files['user_database.csv'].content + '\n' + input_username.value +','+ input_email.value +","+ input_password.value;                                            
+           csv_file.content = csv_file.content + '\n' + input_username.value +','+ input_email.value +","+ input_password.value;                                            
                 
                 gist.update(gist_read,function(){
             
